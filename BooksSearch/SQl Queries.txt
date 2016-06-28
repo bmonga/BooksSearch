@@ -1,0 +1,13 @@
+create table BookInfo
+(
+ISBN INT NOT NULL AUTO_INCREMENT,
+Title VARCHAR(30),
+Description LONGTEXT,
+PRIMARY KEY(ISBN)
+);
+INSERT INTO BookINFO VALUES (1, 'Every Dog has his day', 'By Someone_Every');
+INSERT INTO BookINFO  (Title,Description) VALUES ('Mississippi blues', 'By Someone_Missi');
+INSERT INTO BookINFO  (Title,Description) VALUES ('Moby Dick', 'By Someone_Moby');
+INSERT INTO BookINFO  (Title,Description) VALUES ('Mug Shot', 'By Someone_Mug');
+INSERT INTO BookINFO  (Title,Description) VALUES ('Sample Book Title', 'By Someone_Sample');
+INSERT INTO BookINFO  (Title,Description) VALUES ('Go way', 'By Someone_Go');

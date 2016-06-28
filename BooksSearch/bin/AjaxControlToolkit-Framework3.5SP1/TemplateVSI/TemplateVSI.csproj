@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="BuildTemplates" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <UsingTask TaskName="BuildVsi" AssemblyFile="$(MSBuildProjectDirectory)\..\Binaries\BuildVsi.dll" />
+  <ItemGroup>
+    <Content Include="TemplateVSI.vscontent" />
+    <Content Include="TemplateVSI.xml" />
+    <Content Include="CommonFiles\Behavior.js" />
+    <Content Include="CommonFiles\__TemplateIcon.ico" />
+    <Content Include="CommonFilesCS\Designer.cs" />
+    <Content Include="CommonFilesCS\Extender.cs" />
+    <Content Include="CommonFilesVB\Designer.vb" />
+    <Content Include="CommonFilesVB\Extender.vb" />
+    <Content Include="ItemTemplateCS\MyTemplate.vstemplate" />
+    <Content Include="ItemTemplateVB\MyTemplate.vstemplate" />
+    <Content Include="ProjectTemplateCS\AjaxControlExtender.csproj" />
+    <Content Include="ProjectTemplateCS\MyTemplate.vstemplate" />
+    <Content Include="ProjectTemplateVB\AjaxControlExtender.vbproj" />
+    <Content Include="ProjectTemplateVB\MyTemplate.vstemplate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <PropertyGroup>
+    <OutputPath>$(MSBuildProjectDirectory)\bin</OutputPath>
+    <ProjectGuid>{26CF4C3F-A35C-4122-91FA-D536DD56BDA8}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VsiFile>$(OutputPath)\AjaxControlExtender.vsi</VsiFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Target Name="BuildTemplates" Inputs="@(Content)" Outputs="$(VsiFile)">
+    <BuildVsi ContentProject="$(MSBuildProjectDirectory)\TemplateVSI.xml" ContentRootDirectory="$(MSBuildProjectDirectory)\.." DestinationDirectory="$(OutputPath)" />
+  </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="$(OutputPath)" />
+  </Target>
+  <Target Name="Rebuild">
+    <CallTarget Targets="Clean;BuildTemplates" />
+  </Target>
+</Project>
